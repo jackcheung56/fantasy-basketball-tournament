@@ -37,12 +37,3 @@ NBA Fantasy Team Tournament is a way for users to become an NBA manager and draf
 ---
 
 ### Credits
-
-User has profile
-roster should have profileID
-Profile should not have rosterid
-player should have rosterID
-Profile can have username
-Roster can have teamname/title
-Player include picture
-Profile picture
