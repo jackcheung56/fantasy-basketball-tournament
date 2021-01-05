@@ -9,10 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       playerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       profileId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'profile_id',
+        references: {
+          model: 'profiles',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

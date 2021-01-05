@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Roster.hasMany(models.Player, {
+      Roster.belongsToMany(models.Player, {
+        through: models.Squad,
         foreignKey: "player_id",
         onUpdate: "CASCADE",
         onDelete: "CASCADE"
@@ -24,8 +25,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Roster.init({
-    playerId: DataTypes.INTEGER,
-    profileId: DataTypes.INTEGER
+    playerId: {
+      type: DataTypes.INTEGER,
+      field: 'player_id',
+      references: {
+        model: 'players',
+        key: 'id'
+      }
+    },
+    profileId: {
+      type: DataTypes.INTEGER,
+      field: 'profile_id',
+      references: {
+        model: 'profiles',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Roster',

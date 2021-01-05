@@ -9,7 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rosterId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        field: 'roster_id',
+        references: {
+          model: 'rosters',
+          key: 'id'
+        }
       },
       playerPicture: {
         type: Sequelize.STRING

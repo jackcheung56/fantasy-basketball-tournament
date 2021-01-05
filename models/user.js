@@ -19,10 +19,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    profileId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    passwordDigest: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      field: 'password_digest'
+    },
+    profileId: {
+      type: DataTypes.INTEGER,
+      field: 'profile_id',
+      references:{
+        model: 'profiles',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',

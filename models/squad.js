@@ -3,35 +3,37 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Squad extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Profile.hasOne(models.User, {
-        foreignKey: "user_id",
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE"
-      })
+      // define association here
     }
   };
-  Profile.init({
-    userId: {
+  Squad.init({
+    rosterId: {
       type: DataTypes.INTEGER,
-      field: 'user_id',
+      field: 'roster_id',
       references: {
-        model: 'users',
+        model: 'rosters',
         key: 'id'
       }
     },
-    username: DataTypes.STRING,
-    picture: DataTypes.STRING
+    playerId: {
+      type: DataTypes.INTEGER,
+      field: 'player_id',
+      references: {
+        model: 'players',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
-    modelName: 'Profile',
-    tableName: 'profiles'
+    modelName: 'Squad',
+    tableName: 'squads'
   });
-  return Profile;
+  return Squad;
 };

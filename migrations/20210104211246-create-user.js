@@ -9,17 +9,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true
+        }
       },
-      password: {
-        type: Sequelize.STRING
+      passwordDigest: {
+        type: Sequelize.STRING,
+        field: 'password_digest',
+        allowNull: false
       },
-      profileId: {
-        type: Sequelize.INTEGER
-      },
+      profileId: Sequelize.INTEGER,
+      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
