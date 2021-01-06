@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Player.belongsToMany(models.Roster, {
+        as: 'b',
         through: models.Squad,
         foreignKey: "roster_id",
         onUpdate: "CASCADE",

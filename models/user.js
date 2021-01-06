@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasOne(models.Profile, {
-        foreignKey: "profile_id",
-        onUpdate: '"CASCADE',
-        onDelete: "CASCADE"
+        foreignKey: 'user_id',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       })
     }
   };
@@ -35,14 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'password_digest'
     },
-    profileId: {
-      type: DataTypes.INTEGER,
-      field: 'profile_id',
-      references:{
-        model: 'profiles',
-        key: 'id'
-      }
-    }
   }, {
     sequelize,
     modelName: 'User',

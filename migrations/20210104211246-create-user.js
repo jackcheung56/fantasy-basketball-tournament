@@ -24,7 +24,6 @@ module.exports = {
         field: 'password_digest',
         allowNull: false
       },
-      profileId: Sequelize.INTEGER,
       
       createdAt: {
         allowNull: false,
