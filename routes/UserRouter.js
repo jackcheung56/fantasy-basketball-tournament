@@ -4,4 +4,8 @@ const { readtoken, verifyJwt } = require('../middleware/index')
 
 Router.post('/add', controller.CreateUser)
 
+Router.get('/:user_id', controller.GetUserById)
+
+Router.delete('/delete/:user_id', controller.DeleteUser)
+
 module.exports = Router
