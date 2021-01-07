@@ -15,8 +15,13 @@ const CreateUser = async (req, res) => {
 
 const GetUserById = async(req, res) => {
     try{
-        let userId = parseInt(req.params.user_id)
-        let user = await User.findByPk(userId)
+        let userId = parseInt(req.params.id)
+        let user = await User.findByPk(req.params.id, {
+            where: {
+                id: userId
+            },
+            returning: true
+        })
         res.send(user)
     } catch (error) {
         throw error
@@ -44,7 +49,7 @@ const DeleteUser = async (req, res) => {
 //     try {
 //       const { name, email, password } = req.body;
 //       const passwordDigest = await hashPassword(password);
-//       const user = await User.create({ name, email, passwordDigest, picture, phone });
+//       const user = await User.create({ name, email, passwordDigest });
 //       console.log(user.id);
 //       res.send(user);
 //     } catch (error) {

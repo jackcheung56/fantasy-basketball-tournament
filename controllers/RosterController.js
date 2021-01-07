@@ -1,9 +1,14 @@
 const { Roster } = require('../models')
 
-const GetRosterById = async (req, res) => {
+const GetRosterByProfileId = async (req, res) => {
     try{
-        const rosterId = parseInt(req.params.roster_id)
-        const roster = await Roster.findByPk(rosterId)
+        const rosterId = parseInt(req.params.profile_id)
+        const roster = await Roster.findByPk(req.params.profile_id, {
+            where: {
+                id: rosterId
+            },
+            returning: true
+        })
         res.send(roster)
     } catch (error) {
         throw error
@@ -27,7 +32,17 @@ const DeletePlayerFromRoster = async (req, res) => {
         throw error
     }
 }
+
+const CreateRoster = async (req, res) => {
+    try{
+        const roster = await Roster.create({...req.body})
+        res.send(roster)
+    } catch (error){
+        throw error
+    }
+}
 module.exports = {
-    GetRosterById,
-    DeletePlayerFromRoster
+    GetRosterByProfileId,
+    DeletePlayerFromRoster,
+    CreateRoster
 }

@@ -4,7 +4,7 @@ const UserRouter = require('./UserRouter')
 const PlayerRouter = require('./PlayerRouter')
 const RosterRouter = require('./RosterRouter')
 const SquadRouter = require('./SquadRouter')
-const ProfileRouter = require('./RosterRouter')
+const ProfileRouter = require('./ProfileRouter')
 
 Router.get('/', (req, res) => res.send('This is working!'))
 

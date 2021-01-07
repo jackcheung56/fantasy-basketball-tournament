@@ -9,10 +9,15 @@ const GetAllPlayers = async (req, res) => {
     }
 }
 
-const GetPlayerById = async (req, res) => {
+const GetPlayerBySquadId = async (req, res) => {
     try{
-        const playerId = parseInt(req.params.player_id)
-        const player = await Player.findByPk(playerId)
+        const playerId = parseInt(req.params.squad_id)
+        const player = await Player.findByPk(req.params.squad_id, {
+            where: {
+                id: playerId
+            },
+            returning: true
+        })
         res.send(player)
     } catch (error) {
         throw error
@@ -20,5 +25,5 @@ const GetPlayerById = async (req, res) => {
 }
 module.exports = {
     GetAllPlayers,
-    GetPlayerById
+    GetPlayerBySquadId
 }
